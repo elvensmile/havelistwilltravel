@@ -13,7 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
     ReactiveFormsModule,
     BrowserModule
   ],
-  exports: [],
-  declarations: []
+  exports: [AddIntoTripComponent],
+  declarations: [AddIntoTripComponent]
 })
 export class AddIntoTripModule { }

@@ -7,6 +7,7 @@ import {SearchApiService} from "../search-api.service";
 import {AddIntoTripModule} from "../add-into-trip/add-into-trip.module";
 import {SharingPlacesService} from "../sharing-places.service";
 import {AddIntoTripComponent} from "../add-into-trip/add-into-trip.component";
+import {WorkingTimePipe} from "../pipes/working-time.pipe";
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import {AddIntoTripComponent} from "../add-into-trip/add-into-trip.component";
     AddIntoTripModule
 
   ],
-
+  declarations: [PlaceViewComponent, WorkingTimePipe],
   providers: [SearchApiService, SharingPlacesService]
 
 

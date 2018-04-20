@@ -7,15 +7,18 @@ import {AddTripComponent} from "./add-trip/add-trip.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgbModal, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgbModule, BrowserAnimationsModule
+    NgbModule,
+    BrowserAnimationsModule,
+    RouterModule
   ],
-  exports: [ReactiveFormsModule],
+  exports: [ReactiveFormsModule, ProfileComponent],
   providers: [FirebaseService, NgbModal],
-  declarations: [    ]
+  declarations: [AddTripComponent,TripListComponent, ProfileComponent]
 })
 export class ProfileModule { }

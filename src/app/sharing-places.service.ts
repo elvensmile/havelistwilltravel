@@ -5,7 +5,7 @@ import {IPlace} from "./model/i-place";
 @Injectable()
 export class SharingPlacesService {
 
-  private placeSource = new BehaviorSubject<IPlace>('');
+  private placeSource = new BehaviorSubject<any>({});
   currentPlace = this.placeSource.asObservable();
 
   constructor() { }

@@ -27,6 +27,8 @@ import {PlaceViewComponent} from "./place-view/place-view.component";
 import { WorkingTimePipe } from './pipes/working-time.pipe';
 import { AddIntoTripComponent } from './add-into-trip/add-into-trip.component';
 import {AddIntoTripModule} from "./add-into-trip/add-into-trip.module";
+import {NavbarModule} from "./navbar/navbar.module";
+import {ProfileModule} from "./profile/profile.module";
 
 
 
@@ -42,24 +44,8 @@ const appRoutes: Routes =[
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
 
-
-    NavbarComponent,
-
-
-    TripListComponent,
-
-
-    ProfileComponent,
-
-
-    AddTripComponent,
-
-    PlaceViewComponent,
-
-    WorkingTimePipe,
-    AddIntoTripComponent
 
 
 
@@ -67,10 +53,12 @@ const appRoutes: Routes =[
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
+    NavbarModule,
     SearchFormModule,
     PlaceViewModule,
     TripModule,
     AddIntoTripModule,
+    ProfileModule,
 
 
     NgbModule.forRoot(),
