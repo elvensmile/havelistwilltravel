@@ -1,0 +1,40 @@
+<div id="places">
+  <div class="container">
+    <h3 class ="errorMessage" *ngIf="errorMessage!= ''">{{errorMessage}}</h3>
+    <div class="page-title text-center" *ngIf="showplaces===true">
+      <h1 >Мы нашли следующие места: </h1>
+     <!-- <p>В этом городе люди любят {{beenHere | thingtodoName}} <br>и {{doneThat | thingtodoName}} </p>-->
+      <hr class="pg-titl-bdr-btm">
+    </div>
+
+<div class="row" id="places-wrapper">
+
+  <div class="col-lg-3 col-md-6 places-item" *ngFor="let place of places; let i = index">
+
+    <a [routerLink]="['/place', place.id]" (click)="changePlace(place)">
+      <img src="{{place.imageUrl}}" alt=""></a>
+      <div class="details">
+        <span class="badge badge-info info-btn" (click)="onAdd(places[i], content)">⍌</span>
+        <h4>{{place.name}}</h4>
+        <span>{{place.categories['0'].name}}</span>
+      </div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+
+<ng-template #content
+
+             let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Добавить место к путешествию</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+<hlwt-add-into-trip></hlwt-add-into-trip>
+  </div>
+</ng-template>

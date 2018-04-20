@@ -1,0 +1,41 @@
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Добавить путешествие</button>
+
+<ng-template #content
+
+             let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Добавить путешествие</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]=form (submit)="onSubmit(trip)">
+      <div class="form-group">
+        <label>Название путешествия</label>
+        <input type="text"
+               class="form-control"
+               placeholder="Мое самое лучшее путешествие"
+               formControlName="title"
+               [class.is-invalid]="form.get('title').invalid && form.get('title').touched">
+        <div class="invalid-feedback">
+          {{form.get('title').errors && getErrors(form.get('title').errors)}}
+        </div>
+      </div>
+
+      <div>
+        <button type="submit"
+
+                class="btn btn-block btn-lg btn-primary"
+                style="width:150px; margin-left: auto;margin-right: auto"
+                [disabled]="form.pristine || form.invalid">Сохранить
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
+
+

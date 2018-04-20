@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3">{{tripTitle? tripTitle : "Neverland" }}</h1>
+    <p class="lead">Мест к посещению: {{places.length}}</p>
+    <hr class="my-4">
+
+  </div>
+</div>
+
+<div id="places">
+  <div class="container">
+
+    <div class="row" id="places-wrapper">
+      <div class="col-lg-3 col-md-6 places-item" *ngFor="let place of places" >
+        <div class="card text-white bg-secondary mb-3  places-item" style="max-width: 30rem;" >
+          <div class="card-header">К посещению: <span class="badge badge-danger delete-btn" (click)="onDelete(place.key)">&times;</span></div>
+
+
+          <div class="card-body">
+            <h4 class="card-title">{{place.name}}</h4>
+
+            <img style="height: 150px; width: 100%; display: block;" src="{{place.imageUrl}}" alt="Card image">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

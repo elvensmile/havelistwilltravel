@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  display: flex;
+  flex-flow: column wrap;
+
+}
+
+html, body {
+  height: 100%;
+}

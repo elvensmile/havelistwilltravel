@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-lg-5 place-img"><img src="{{place.bestPhoto.prefix}}612x612{{place.bestPhoto.suffix}}" alt="">
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1 ">
+
+
+
+
+      <div class="place-about">
+        <h2 class="place__title">{{place.name}}</h2>
+        <p class="place__subtitle">{{place.categories.name}}</p>
+        <p class="place__text">{{place.description}}</p>
+
+        <ngb-tabset>
+          <ngb-tab title="Адрес" class="nav nav-tabs">
+            <ng-template ngbTabContent>
+              <br>
+              <p>{{place.location.formattedAddress}}</p>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Часы Работы">
+            <ng-template ngbTabContent>
+              <br>
+              <p style="white-space:pre-line;">{{place.popular.timeframes | workingTime}}</p>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Входной Билет">
+            <ng-template ngbTabContent>
+              <p>100</p>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+
+
+        <hr class="my-4">
+
+        <h2>Лучший Отзыв</h2>
+        <blockquote class="blockquote">
+          <p class="mb-0">"{{place.tips.groups["0"].items["0"].text}}"</p>
+          <footer class="blockquote-footer">{{place.tips.groups["0"].items["0"].user.firstName}}</footer>
+        </blockquote>
+
+        <hr class="my-4">
+
+     <hlwt-add-into-trip></hlwt-add-into-trip>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
