@@ -27,13 +27,14 @@ import {LoginComponent} from './login/login.component';
 import {LoginModule} from './login/login.module';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {LoadingSpinnerModule} from './ui/loading-spinner/loading-spinner.module';
+import {AuthGuard} from "./auth.guard";
 
 
 const appRoutes: Routes = [
   { path: '', component: SearchFormComponent},
   {path: 'login', component: LoginComponent},
-  { path: 'profile', component: ProfileComponent},
-  { path: 'trip/:id', component: TripComponent },
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'trip/:id', component: TripComponent, canActivate: [AuthGuard]},
   { path: 'place/:id', component: PlaceViewComponent }
 ];
 
@@ -44,7 +45,7 @@ const appRoutes: Routes = [
     AppComponent,
 
   ],
-  providers: [NgbActiveModal],
+  providers: [NgbActiveModal, AuthGuard],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
