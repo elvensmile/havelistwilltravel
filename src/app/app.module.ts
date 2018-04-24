@@ -24,9 +24,9 @@ import {AddIntoTripModule} from './add-into-trip/add-into-trip.module';
 import {NavbarModule} from './navbar/navbar.module';
 import {ProfileModule} from './profile/profile.module';
 import {LoginComponent} from './login/login.component';
-import {LoginModule} from "./login/login.module";
-import {AngularFireAuthModule} from "angularfire2/auth";
-import {LoadingSpinnerModule} from "./ui/loading-spinner/loading-spinner.module";
+import {LoginModule} from './login/login.module';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {LoadingSpinnerModule} from './ui/loading-spinner/loading-spinner.module';
 
 
 const appRoutes: Routes = [

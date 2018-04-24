@@ -3,8 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {FirebaseService} from '../../services/firebase.service';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {IUser} from "../../model/i-user";
-import {AuthService} from "../../services/auth.service";
+import {IUser} from '../../model/i-user';
+import {AuthService} from '../../services/auth.service';
 
 
 @Component({
@@ -27,7 +27,6 @@ export class AddTripComponent implements OnInit {
   ngOnInit() {
 
     this.auth.user.subscribe(user => {
-      console.log('user hi:', user.uid);
       return this.user = user;
     });
 
@@ -59,7 +58,7 @@ export class AddTripComponent implements OnInit {
 
       event.preventDefault();
     this.firebase.addTrip(this.user, {title: this.form.value.title})
-      .then(() => this.form.reset())
+      .then(() => this.form.reset());
 
   }
 

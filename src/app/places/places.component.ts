@@ -20,15 +20,11 @@ export class PlacesComponent implements OnInit, OnDestroy {
   errorMessage: string;
   places: IPlace[] = [];
   showplaces = false;
-  allThings = [];
-  popularThingsToDo = {};
-  beenHere: any = '';
-  doneThat: any = '';
 
   place: IPlace;
   currentPlace;
 
-  showSpinner: boolean = true;
+  showSpinner = true;
 
 
   constructor(private searchApiService: SearchApiService, private gpskeeper: GpskeeperService, private firebase: FirebaseService, private modalService: NgbModal, private share: SharingPlacesService) {
@@ -40,7 +36,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
       .distinctUntilChanged()
       .filter(place => place != '')
       .subscribe(place => {
-        console.log('place sent', place);
+
         return this.place = place;
       });
 
@@ -70,7 +66,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
         this.showplaces = true;
       })
       .flatMap(places => {
-        console.log('places', places);
+
         return Observable.from(places);
       })
       .flatMap(place => {

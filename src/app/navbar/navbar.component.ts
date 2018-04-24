@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../services/auth.service";
-import {IUser} from "../model/i-user";
+import {AuthService} from '../services/auth.service';
+import {IUser} from '../model/i-user';
 
 @Component({
   selector: 'hlwt-navbar',
@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user.subscribe(user => {
-      console.log('user state', user);
+
       return this.user = user;
     });
   }

@@ -7,7 +7,7 @@ import {SearchApiService} from '../services/search-api.service';
 import {AddIntoTripModule} from '../add-into-trip/add-into-trip.module';
 import {SharingPlacesService} from '../services/sharing-places.service';
 import {WorkingTimePipe} from '../pipes/working-time.pipe';
-import {LoadingSpinnerModule} from "../ui/loading-spinner/loading-spinner.module";
+import {LoadingSpinnerModule} from '../ui/loading-spinner/loading-spinner.module';
 
 
 @NgModule({

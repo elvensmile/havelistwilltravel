@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service';
 import {animate, keyframes, query, stagger, style, transition, trigger} from '@angular/animations';
-import {AuthService} from "../../services/auth.service";
-import {IUser} from "../../model/i-user";
+import {AuthService} from '../../services/auth.service';
+import {IUser} from '../../model/i-user';
 
 @Component({
   selector: 'hlwt-trip-list',
@@ -40,7 +40,6 @@ export class TripListComponent implements OnInit {
   ngOnInit() {
 
     this.auth.user.subscribe(user => {
-      console.log('user hi:', user.uid);
       this.user = user;
       return this.getTrips(user.uid);
     });
@@ -51,14 +50,14 @@ export class TripListComponent implements OnInit {
   getTrips(user) {
     return this.firebaseService.getUserTripsList(user)
       .snapshotChanges()
-      .do(() => console.log('user?', user))
+
       .subscribe(item => {
         this.trips = [];
         item.forEach(element => {
           const x = element.payload.toJSON();
           x['key'] = element.key;
           this.trips.push(x);
-          console.log('---', this.trips);
+
           this.firebaseService.changeList(this.trips.length);
         });
 

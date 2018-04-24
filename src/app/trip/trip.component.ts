@@ -3,9 +3,9 @@ import {FirebaseService} from '../services/firebase.service';
 import {IPlace} from '../model/i-place';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import {IUser} from "../model/i-user";
-import {AuthService} from "../services/auth.service";
-import {SharingPlacesService} from "../services/sharing-places.service";
+import {IUser} from '../model/i-user';
+import {AuthService} from '../services/auth.service';
+import {SharingPlacesService} from '../services/sharing-places.service';
 
 @Component({
   selector: 'hlwt-trip',
@@ -27,7 +27,7 @@ export class TripComponent implements OnInit {
   ngOnInit() {
 
     this.auth.user.subscribe(user => {
-      console.log('user hi:', user.uid);
+
       this.user = user;
       this.getTripList(user.uid);
       this.getTripDetails(user.uid);
@@ -47,7 +47,7 @@ export class TripComponent implements OnInit {
         return this.firebaseService.getTripList(user, params.get('id'))
           .snapshotChanges();
       })
-      .do(() => console.log('user2?', user))
+
       .subscribe(item => {
         this.places = [];
         item.forEach(element => {
@@ -73,7 +73,7 @@ export class TripComponent implements OnInit {
 
 
   onDelete(key: string) {
-    console.log(this.id);
+
     this.firebaseService.removePlace(this.user.uid, this.id, key);
   }
 

@@ -3,7 +3,7 @@ import {IPlace} from '../model/i-place';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {ITrip} from '../model/i-trip';
-import {IUser} from "../model/i-user";
+import {IUser} from '../model/i-user';
 
 const BASE_URL = 'https://have-list-will-t-1523390586858.firebaseio.com/';
 

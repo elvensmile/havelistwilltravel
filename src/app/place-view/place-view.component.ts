@@ -3,7 +3,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {SearchApiService} from '../services/search-api.service';
 import {SharingPlacesService} from '../services/sharing-places.service';
 import {IPlace} from '../model/i-place';
-import {ISubscription} from "rxjs/Subscription";
+import {ISubscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'hlwt-place-view',
@@ -17,7 +17,7 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
   sharePlace: ISubscription;
   getDetails: ISubscription;
   placeUrl: string;
-  showSpinner: boolean = true;
+  showSpinner = true;
 
 
   constructor(private searchapiservice: SearchApiService, private route: ActivatedRoute,
@@ -37,7 +37,7 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
       .subscribe((result) => {
         this.place = result;
         this.showSpinner = false;
-        return this.placeUrl = `${result.bestPhoto.prefix}612x612${result.bestPhoto.suffix}`
+        return this.placeUrl = `${result.bestPhoto.prefix}612x612${result.bestPhoto.suffix}`;
       });
 
   }

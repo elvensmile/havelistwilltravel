@@ -11,7 +11,7 @@ export const environment = {
     databaseURL: 'https://have-list-will-t-1523390586858.firebaseio.com/',
     projectId: 'have-list-will-t-1523390586858',
     storageBucket: 'todolistapp-8361f.appspot.com',
-    messagingSenderId: "699986089792"
+    messagingSenderId: '699986089792'
 
   }
 };

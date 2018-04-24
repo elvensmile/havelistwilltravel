@@ -4,8 +4,8 @@ import {ITrip} from '../model/i-trip';
 import {IPlace} from '../model/i-place';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {SharingPlacesService} from '../services/sharing-places.service';
-import {AuthService} from "../services/auth.service";
-import {IUser} from "../model/i-user";
+import {AuthService} from '../services/auth.service';
+import {IUser} from '../model/i-user';
 
 @Component({
   selector: 'hlwt-add-into-trip',
@@ -87,7 +87,7 @@ export class AddIntoTripComponent implements OnInit, OnDestroy {
   onAddTrip(trip: ITrip) {
 
     event.preventDefault();
-    this.firebaseService.addPlace(this.user.uid, this.place, trip)
+    this.firebaseService.addPlace(this.user.uid, this.place, trip);
 
 
   }

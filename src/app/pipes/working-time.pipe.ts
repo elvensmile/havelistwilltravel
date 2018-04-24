@@ -8,8 +8,6 @@ export class WorkingTimePipe implements PipeTransform {
   transform(value: any, args?: any): any {
 
 
-    console.log('pew', value);
-
     const arrayWithTime = value;
     const strings = [];
     arrayWithTime.forEach(item => {

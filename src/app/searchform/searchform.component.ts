@@ -47,13 +47,13 @@ export class SearchFormComponent implements OnInit {
       .switchMap(value =>
         this.searchApiService.getCities(value))
       .subscribe((result) => {
-        console.log('-selected city', this.lastSelectedCity);
+
         this.setCandidates(result);
 
 
       }, (error) => {
 
-        console.log('-error', this.errorMessage);
+
       });
   }
 
@@ -89,7 +89,7 @@ export class SearchFormComponent implements OnInit {
   setCandidates(candidates: ICandidate[]) {
     const results = candidates.filter(item => item.matchLevel == 'city' || item.matchLevel == 'state');
     this.candidates = results;
-    console.log('- candidates', candidates);
+
   }
 
 
