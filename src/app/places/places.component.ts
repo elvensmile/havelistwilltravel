@@ -24,8 +24,6 @@ export class PlacesComponent implements OnInit, OnDestroy {
   place: IPlace;
   currentPlace;
 
-  showSpinner = true;
-
 
   constructor(private searchApiService: SearchApiService, private gpskeeper: GpskeeperService, private firebase: FirebaseService, private modalService: NgbModal, private share: SharingPlacesService) {
   }
