@@ -1,0 +1,48 @@
+<section class="login">
+
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+
+      <div class="fadeIn first">
+        <img src="https://res.cloudinary.com/elvenapps/image/upload/v1524554092/hlwt_hbpgnf.png" id="icon"
+             alt="HLWT LOGO"/>
+      </div>
+
+
+      <form class="form-group padded" [formGroup]="form" (submit)="onSubmitLogin()">
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+        <input type="text" class="fadeIn second form-control" name="email" placeholder="email" id="inputEmailForm"
+               required=""
+               formControlName="inputEmailForm"
+               [class.is-invalid]="form.get('inputEmailForm').invalid && form.get('inputEmailForm').touched">
+        <div class="invalid-feedback">
+          {{form.get('inputEmailForm').errors && getErrors(form.get('inputEmailForm').errors)}}
+        </div>
+        <input type="password" class="fadeIn third form-control" id="inputPasswordForm" placeholder="пароль" required=""
+               formControlName="inputPasswordForm"
+               [class.is-invalid]="form.get('inputPasswordForm').invalid && form.get('inputPasswordForm').touched"
+        >
+        <div class="invalid-feedback">
+          {{form.get('inputPasswordForm').errors && getErrors(form.get('inputPasswordForm').errors)}}
+        </div>
+        <input type="submit" class="btn btn-block btn-lg btn-primary fadeIn fourth" value="Войти"
+               [disabled]="form.invalid||form.pristine">
+        <p>Или в один клик можно:</p>
+        <input type="button" class="btn btn-block btn-lg btn-secondary fadeIn fourth" value="Зарегистрироваться"
+               [disabled]="form.invalid || form.pristine"
+               (click)="onSubmitSignUp()"
+
+        >
+      </form>
+
+
+    </div>
+  </div>
+
+
+</section>
+
+
+
