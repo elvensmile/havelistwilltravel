@@ -37,7 +37,7 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
       .subscribe((result) => {
         this.place = result;
         this.showSpinner = false;
-        return this.placeUrl = `${result.bestPhoto.prefix}612x612${result.bestPhoto.suffix}`;
+        return this.placeUrl = `${this.place.bestPhoto.prefix}612x612${this.place.bestPhoto.suffix}`;
       });
 
   }

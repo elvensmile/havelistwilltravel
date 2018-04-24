@@ -28,7 +28,7 @@ export class AddIntoTripComponent implements OnInit, OnDestroy {
   sharePlace;
 
 
-  constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder, private share: SharingPlacesService, private auth: AuthService) {
+  constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder, private share: SharingPlacesService, public auth: AuthService) {
   }
 
   ngOnInit() {
