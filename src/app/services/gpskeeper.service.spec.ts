@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { GpskeeperService } from './gpskeeper.service';
+import {GpskeeperService} from './gpskeeper.service';
 
 describe('GpskeeperService', () => {
   beforeEach(() => {

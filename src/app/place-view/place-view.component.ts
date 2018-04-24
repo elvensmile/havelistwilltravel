@@ -1,39 +1,52 @@
-import { Component, OnInit } from '@angular/core';
-import {IPlaceDetails} from "../model/i-placeDetails";
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {FirebaseService} from "../firebase.service";
-import {SearchApiService} from "../search-api.service";
-import {SharingPlacesService} from "../sharing-places.service";
-import {IPlace} from "../model/i-place";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {SearchApiService} from '../services/search-api.service';
+import {SharingPlacesService} from '../services/sharing-places.service';
+import {IPlace} from '../model/i-place';
+import {ISubscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'hlwt-place-view',
   templateUrl: './place-view.component.html',
   styleUrls: ['./place-view.component.css']
 })
-export class PlaceViewComponent implements OnInit {
+export class PlaceViewComponent implements OnInit, OnDestroy {
 
   placeId: IPlace;
-  place:any =[];
+  place: any = [];
+  sharePlace: ISubscription;
+  getDetails: ISubscription;
+  placeUrl: string;
+  showSpinner: boolean = true;
+
 
   constructor(private searchapiservice: SearchApiService, private route: ActivatedRoute,
-              private router: Router, private share:SharingPlacesService) { }
+              private router: Router, private share: SharingPlacesService) {
+  }
 
   ngOnInit() {
 
-    this.share.currentPlace
+    this.sharePlace = this.share.currentPlace
+      .subscribe(place1 =>
 
-      .subscribe(place1 => {
-        console.log('place recieved',place1);
-        return this.placeId = place1})
+        this.placeId = place1);
 
-     /*this.searchapiservice.getPlaceDetails().subscribe(
-      (result) => {console.log('11122', result); return this.place = result;})*/
 
-    this.route.paramMap
+    this.getDetails = this.route.paramMap
       .switchMap((params: ParamMap) => this.searchapiservice.getPlaceDetails(params.get('id')))
-      .subscribe((result)=> {console.log(result); this.place = result})
+      .subscribe((result) => {
+        this.place = result;
+        this.showSpinner = false;
+        return this.placeUrl = `${result.bestPhoto.prefix}612x612${result.bestPhoto.suffix}`
+      });
 
   }
+
+  ngOnDestroy() {
+    this.sharePlace.unsubscribe();
+    this.getDetails.unsubscribe();
+  }
+
+
 
 }

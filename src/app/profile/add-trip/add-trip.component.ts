@@ -1,8 +1,10 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {FirebaseService} from "../../firebase.service";
-import {NgbModal, NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {FirebaseService} from '../../services/firebase.service';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {IUser} from "../../model/i-user";
+import {AuthService} from "../../services/auth.service";
 
 
 @Component({
@@ -13,12 +15,21 @@ import {NgbModal, NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
 export class AddTripComponent implements OnInit {
 
 
+  user: IUser;
+
+
   form: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private firebase: FirebaseService, private modalService: NgbModal) { }
+  constructor(private formBuilder: FormBuilder, private firebase: FirebaseService, private modalService: NgbModal, private auth: AuthService, public  activeModal: NgbActiveModal) {
+  }
 
   ngOnInit() {
+
+    this.auth.user.subscribe(user => {
+      console.log('user hi:', user.uid);
+      return this.user = user;
+    });
 
     this.form = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
@@ -47,8 +58,8 @@ export class AddTripComponent implements OnInit {
     }
 
       event.preventDefault();
-      this.firebase.addTrip({title:this.form.value.title})
-        .then(()=>this.form.reset())
+    this.firebase.addTrip(this.user, {title: this.form.value.title})
+      .then(() => this.form.reset())
 
   }
 

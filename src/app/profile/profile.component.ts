@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FirebaseService} from "../firebase.service";
+import {Component, OnInit} from '@angular/core';
+import {FirebaseService} from '../services/firebase.service';
 
 
 @Component({
-  selector: 'app-profile',
+  selector: 'hlwt-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    this.firebase.currentTripListLength.subscribe(number => this.tripsCounter = number)
+
+    this.firebase.currentTripListLength.subscribe(number => this.tripsCounter = number);
   }
 
 

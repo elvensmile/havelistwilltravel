@@ -1,15 +1,19 @@
-
+<div *ngIf="(auth.user | async)">
   <div class="form-group" [formGroup]=form>
     <label for id="selectedTrip">Выберите путешествие:</label>
     <select class="custom-select" formControlName="chooseTrip" [(ngModel)]="selectedTrip">
 
       <option *ngFor="let trip of trips" [ngValue]="trip">{{trip.title}}</option>
-
     </select>
-    {{selectedTrip | json}}
+
   </div>
 
 
-  <button type="button" class="btn btn-primary btn-lg" (click)="onAddTrip(selectedTrip)" >Добавить к посещению!</button>
+  <button type="button" class="btn btn-primary btn-lg" (click)="onAddTrip(selectedTrip)" [disabled]="!(selectedTrip)">
+    Добавить к посещению!
+  </button>
 
 
+</div>
+
+<p *ngIf="!(auth.user | async)">Пожалуйста, войдите для добавления места к посещению</p>

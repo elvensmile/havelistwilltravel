@@ -11,7 +11,7 @@
   </div>
   <div class="modal-body">
 
-    <form [formGroup]=form (submit)="onSubmit(trip)">
+    <form [formGroup]=form>
       <div class="form-group">
         <label>Название путешествия</label>
         <input type="text"
@@ -25,7 +25,8 @@
       </div>
 
       <div>
-        <button type="submit"
+        <button type="button"
+                (click)="onSubmit(trip)"
 
                 class="btn btn-block btn-lg btn-primary"
                 style="width:150px; margin-left: auto;margin-right: auto"

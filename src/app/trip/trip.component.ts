@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import * as firebase from "firebase";
-import {FirebaseService} from "../firebase.service";
-import {IPlace} from "../model/i-place";
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FirebaseService} from '../services/firebase.service';
+import {IPlace} from '../model/i-place';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import {Observable} from "rxjs/Observable";
+import {IUser} from "../model/i-user";
+import {AuthService} from "../services/auth.service";
+import {SharingPlacesService} from "../services/sharing-places.service";
 
 @Component({
   selector: 'hlwt-trip',
@@ -16,47 +17,70 @@ export class TripComponent implements OnInit {
   places: any = [];
   tripTitle: string;
   id;
+  user: IUser;
+  place: IPlace;
 
 
-  constructor(private firebaseService: FirebaseService, private route: ActivatedRoute,
-              private router: Router) { }
+  constructor(private firebaseService: FirebaseService, private route: ActivatedRoute, private auth: AuthService, private share: SharingPlacesService) {
+  }
 
   ngOnInit() {
 
-
-       this.route.paramMap
-        .switchMap((params: ParamMap) => { this.id = params.get('id');
-         return this.firebaseService.getTripList(params.get('id'))
-           .snapshotChanges()})
-            .subscribe(item => {
-              this.places = [];
-              item.forEach(element => {
-                let x = element.payload.toJSON();
-                x["key"] = element.key;
-                this.places.push(x);
-              })
-            })
-
-    this.firebaseService.getTripDetails(this.route.snapshot.paramMap.get('id'))
-      .snapshotChanges()
-      .subscribe(
-        item=> {
-          this.tripTitle = item['0'].payload.toJSON();
-        console.log(item);}
-      );
+    this.auth.user.subscribe(user => {
+      console.log('user hi:', user.uid);
+      this.user = user;
+      this.getTripList(user.uid);
+      this.getTripDetails(user.uid);
+    });
 
 
-
-
-        console.log('--- places', this.places);
+    console.log('--- places', this.places);
 
 
   }
 
+  getTripList(user: string) {
 
-  onDelete(key : string){
+    return this.route.paramMap
+      .switchMap((params: ParamMap) => {
+        this.id = params.get('id');
+        return this.firebaseService.getTripList(user, params.get('id'))
+          .snapshotChanges();
+      })
+      .do(() => console.log('user2?', user))
+      .subscribe(item => {
+        this.places = [];
+        item.forEach(element => {
+          const x = element.payload.toJSON();
+          x['key'] = element.key;
+          this.places.push(x);
+        });
+      });
+
+  }
+
+  getTripDetails(user: string) {
+    return this.firebaseService.getTripDetails(user, this.route.snapshot.paramMap.get('id'))
+      .snapshotChanges()
+      .subscribe(
+        item => {
+          this.tripTitle = item['0'].payload.toJSON();
+          console.log(item);
+        }
+      );
+
+  }
+
+
+  onDelete(key: string) {
     console.log(this.id);
-    this.firebaseService.removePlace(this.id, key);
+    this.firebaseService.removePlace(this.user.uid, this.id, key);
+  }
+
+  changePlace(place: IPlace) {
+    this.place = place;
+
+    this.share.sendPlace(this.place);
   }
 
 

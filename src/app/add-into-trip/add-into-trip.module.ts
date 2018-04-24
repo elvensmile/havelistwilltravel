@@ -1,10 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {AddIntoTripComponent} from "./add-into-trip.component";
-import {ReactiveFormsModule} from "@angular/forms";
-import { BrowserModule } from '@angular/platform-browser';
-
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AddIntoTripComponent} from './add-into-trip.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
 
 
 @NgModule({

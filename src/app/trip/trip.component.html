@@ -18,8 +18,8 @@
 
           <div class="card-body">
             <h4 class="card-title">{{place.name}}</h4>
-
-            <img style="height: 150px; width: 100%; display: block;" src="{{place.imageUrl}}" alt="Card image">
+            <a [routerLink]="['/place', place.id]" (click)="changePlace(place)">
+              <img style="height: 150px; width: 100%; display: block;" src="{{place.imageUrl}}" alt="Card image"></a>
           </div>
         </div>
       </div>

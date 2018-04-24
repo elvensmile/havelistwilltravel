@@ -1,9 +1,9 @@
 
 export interface ICandidate {
-  label: string,
-  language: string,
-  countryCode: string,
-  locationId: string,
+  label: string;
+  language: string;
+  countryCode: string;
+  locationId: string;
   address: {
     country: string,
     state: string,
@@ -11,8 +11,8 @@ export interface ICandidate {
     city: string,
     district: string,
     postalCode: string,
-  },
-  distance: number,
-  matchLevel: string
+  };
+  distance: number;
+  matchLevel: string;
 }
 

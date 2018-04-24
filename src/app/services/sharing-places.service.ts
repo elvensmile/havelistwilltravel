@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {IPlace} from "./model/i-place";
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {IPlace} from '../model/i-place';
+
 
 @Injectable()
 export class SharingPlacesService {
@@ -11,7 +12,7 @@ export class SharingPlacesService {
   constructor() { }
 
   sendPlace(place: IPlace) {
-    this.placeSource.next(place)
+    this.placeSource.next(place);
   }
 
 

@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder} from "@angular/forms";
-
-import {Observable} from 'rxjs/Observable';
-import {SearchApiService} from '../search-api.service';
-import {GpskeeperService} from "../gpskeeper.service";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {SearchApiService} from '../services/search-api.service';
+import {GpskeeperService} from '../services/gpskeeper.service';
 import 'rxjs/Rx';
-import {of} from 'rxjs/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -13,9 +10,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/merge';
-import {ICandidate} from "../model/i-candidate";
-import {ICityInfoHere} from "../model/i-cityInfoHere";
-import {IPlace} from "../model/i-place";
+import {ICandidate} from '../model/i-candidate';
+import {ICityInfoHere} from '../model/i-cityInfoHere';
 
 
 @Component({
@@ -25,11 +21,11 @@ import {IPlace} from "../model/i-place";
 })
 export class SearchFormComponent implements OnInit {
 
-  errorMessage: string = '';
+  errorMessage = '';
   form: FormGroup;
   candidates: ICandidate[] = [];
   model: any;
-  lastSelectedCity = "";
+  lastSelectedCity = '';
   queryBox: ICityInfoHere;
 
 
@@ -57,7 +53,7 @@ export class SearchFormComponent implements OnInit {
 
       }, (error) => {
 
-        console.log('-error', this.errorMessage)
+        console.log('-error', this.errorMessage);
       });
   }
 
@@ -69,7 +65,7 @@ export class SearchFormComponent implements OnInit {
 
     if (cityArgument === undefined) {
 
-      cityArgument = city.address.state
+      cityArgument = city.address.state;
     }
 
     this.searchApiService.getCityInfo(cityArgument)
@@ -84,14 +80,14 @@ export class SearchFormComponent implements OnInit {
   }
 
   getQueryBoxGps(queryBox: ICityInfoHere) {
-    let queryBoxGps = `${queryBox.DisplayPosition.Latitude},${queryBox.DisplayPosition.Longitude}`
-    console.log('-GPS', queryBoxGps)
-    return queryBoxGps
+    const queryBoxGps = `${queryBox.DisplayPosition.Latitude},${queryBox.DisplayPosition.Longitude}`;
+    console.log('-GPS', queryBoxGps);
+    return queryBoxGps;
   }
 
 
   setCandidates(candidates: ICandidate[]) {
-    let results = candidates.filter(item => item.matchLevel == "city" || item.matchLevel == "state");
+    const results = candidates.filter(item => item.matchLevel == 'city' || item.matchLevel == 'state');
     this.candidates = results;
     console.log('- candidates', candidates);
   }

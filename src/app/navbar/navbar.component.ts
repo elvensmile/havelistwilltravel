@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../services/auth.service";
+import {IUser} from "../model/i-user";
 
 @Component({
   selector: 'hlwt-navbar',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  collapsed = true;
+  user: IUser;
+
+  constructor(private auth: AuthService) {
+  }
 
   ngOnInit() {
+    this.auth.user.subscribe(user => {
+      console.log('user state', user);
+      return this.user = user;
+    });
+  }
+
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
+
+  logOut() {
+    this.auth.logout();
   }
 
 }

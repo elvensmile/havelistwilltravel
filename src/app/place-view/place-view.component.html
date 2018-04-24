@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" *ngIf="!showSpinner">
   <div class="row">
-    <div class="col-md-6 col-lg-5 place-img"><img src="{{place.bestPhoto.prefix}}612x612{{place.bestPhoto.suffix}}" alt="">
+    <div class="col-md-6 col-lg-5 place-img"><img [src]="placeUrl" alt="">
     </div>
     <div class="col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1 ">
 
@@ -22,14 +22,12 @@
           <ngb-tab title="Часы Работы">
             <ng-template ngbTabContent>
               <br>
-              <p style="white-space:pre-line;">{{place.popular.timeframes | workingTime}}</p>
+              <p style="white-space:pre-line;" *ngIf="place.popular !== undefined">{{place.popular.timeframes |
+                workingTime}}</p>
+              <p style="white-space:pre-line;" *ngIf="place.popular == undefined">Не установлены</p>
             </ng-template>
           </ngb-tab>
-          <ngb-tab title="Входной Билет">
-            <ng-template ngbTabContent>
-              <p>100</p>
-            </ng-template>
-          </ngb-tab>
+
         </ngb-tabset>
 
 
@@ -50,4 +48,7 @@
     </div>
   </div>
 </div>
+
+<hlwt-loading-spinner *ngIf="showSpinner"></hlwt-loading-spinner>
+
 

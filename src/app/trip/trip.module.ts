@@ -1,11 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {FirebaseService} from "../firebase.service";
-import {TripComponent} from "./trip.component"
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FirebaseService} from '../services/firebase.service';
+import {TripComponent} from './trip.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
   ],
 
   declarations: [TripComponent],

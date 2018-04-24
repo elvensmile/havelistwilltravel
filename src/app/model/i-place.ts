@@ -1,52 +1,52 @@
 export interface IPlace {
 
-  id: string,
-  name: string,
-  location: Location,
-  categories: Category[],
-  venuePage: VenuePage,
-  imageUrl: string
+  id: string;
+  name: string;
+  location: Location;
+  categories: Category[];
+  venuePage: VenuePage;
+  imageUrl: string;
 }
 
 
 
 export interface LabeledLatLng {
-  label: string,
-  lat: number,
-  lng: number,
+  label: string;
+  lat: number;
+  lng: number;
 }
 
 export interface Location {
-  address: string,
-  crossStreet: string,
-  lat: number,
-  lng: number,
-  labeledLatLngs: LabeledLatLng[],
-  distance: number,
-  postalCode: string,
-  cc: string,
-  city: string,
-  state: string,
-  country: string,
-  formattedAddress: string[],
+  address: string;
+  crossStreet: string;
+  lat: number;
+  lng: number;
+  labeledLatLngs: LabeledLatLng[];
+  distance: number;
+  postalCode: string;
+  cc: string;
+  city: string;
+  state: string;
+  country: string;
+  formattedAddress: string[];
 }
 
 export interface Icon {
-  prefix: string,
-  suffix: string,
+  prefix: string;
+  suffix: string;
 }
 
 export interface Category {
-  id: string,
-  name: string,
-  pluralName: string,
-  shortName: string,
-  icon: Icon,
-  primary: boolean,
+  id: string;
+  name: string;
+  pluralName: string;
+  shortName: string;
+  icon: Icon;
+  primary: boolean;
 }
 
 export interface VenuePage {
-  id: string,
+  id: string;
 }
 
 

@@ -1,19 +1,17 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule } from '@angular/common';
-import {SearchFormComponent} from "./searchform.component";
-import {ReactiveFormsModule} from "@angular/forms";
-import {SearchApiService} from "../search-api.service";
-import {GpskeeperService} from "../gpskeeper.service";
-import {FirebaseService} from "../firebase.service"
-import {PlacesComponent} from "../places/places.component";
+import {CommonModule} from '@angular/common';
+import {SearchFormComponent} from './searchform.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SearchApiService} from '../services/search-api.service';
+import {GpskeeperService} from '../services/gpskeeper.service';
+import {FirebaseService} from '../services/firebase.service';
+import {PlacesComponent} from '../places/places.component';
 import {RouterModule} from '@angular/router';
 
-import {AddIntoTripModule} from "../add-into-trip/add-into-trip.module";
-import {AddIntoTripComponent} from "../add-into-trip/add-into-trip.component";
-import {SharingPlacesService} from "../sharing-places.service";
-
-
+import {AddIntoTripModule} from '../add-into-trip/add-into-trip.module';
+import {SharingPlacesService} from '../services/sharing-places.service';
+import {LoadingSpinnerModule} from "../ui/loading-spinner/loading-spinner.module";
 
 
 @NgModule({
@@ -22,7 +20,8 @@ import {SharingPlacesService} from "../sharing-places.service";
     ReactiveFormsModule,
     NgbModule,
     RouterModule,
-    AddIntoTripModule
+    AddIntoTripModule,
+    LoadingSpinnerModule
 
   ],
   declarations: [SearchFormComponent, PlacesComponent],

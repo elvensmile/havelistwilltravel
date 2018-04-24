@@ -9,6 +9,7 @@
 
 <div class="row" id="places-wrapper">
 
+
   <div class="col-lg-3 col-md-6 places-item" *ngFor="let place of places; let i = index">
 
     <a [routerLink]="['/place', place.id]" (click)="changePlace(place)">
@@ -35,6 +36,10 @@
     </button>
   </div>
   <div class="modal-body">
-<hlwt-add-into-trip></hlwt-add-into-trip>
+    <hlwt-add-into-trip></hlwt-add-into-trip>
   </div>
 </ng-template>
+
+<hlwt-loading-spinner *ngIf="showSpinner && showplaces===true"></hlwt-loading-spinner>
+
+
