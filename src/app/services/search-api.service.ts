@@ -45,9 +45,9 @@ export class SearchApiService {
   getPlaces(query) {
 
 
-    return this.http.get(`${BASE_URL_FOURSQUARE}/search?ll=${query}&categoryId=${CATEGORIES_FOURSQARE}&client_id=${API_KEY_FOURSQUARE}&client_secret=${APP_CODE_FOURSQUARE}&v=20180413&limit=15`)
+    return this.http.get(`${BASE_URL_FOURSQUARE}/search?ll=${query}&categoryId=${CATEGORIES_FOURSQARE}&client_id=${API_KEY_FOURSQUARE}&client_secret=${APP_CODE_FOURSQUARE}&v=20180413&limit=10`)
 
-    /*return Observable.of(mockArray)*/
+
       .map(res => res['response'].venues as IPlace[] || []);
 
 

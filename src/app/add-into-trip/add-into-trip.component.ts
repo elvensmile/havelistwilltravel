@@ -23,6 +23,8 @@ export class AddIntoTripComponent implements OnInit, OnDestroy {
   trips: any = [];
   form: FormGroup;
   selectedTrip = this.trips[0];
+  added: string = '';
+
 
   getTripsFromBase;
   sharePlace;
@@ -54,6 +56,11 @@ export class AddIntoTripComponent implements OnInit, OnDestroy {
       chooseTrip: ['']
 
     });
+
+    this.form.get('chooseTrip').valueChanges
+      .subscribe(() =>
+        this.added = ''
+      )
 
 
   }
@@ -87,7 +94,8 @@ export class AddIntoTripComponent implements OnInit, OnDestroy {
   onAddTrip(trip: ITrip) {
 
     event.preventDefault();
-    this.firebaseService.addPlace(this.user.uid, this.place, trip);
+    this.firebaseService.addPlace(this.user.uid, this.place, trip)
+      .then(() => this.added = 'Добавлено');
 
 
   }

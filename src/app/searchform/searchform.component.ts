@@ -21,7 +21,7 @@ import {ICityInfoHere} from '../model/i-cityInfoHere';
 })
 export class SearchFormComponent implements OnInit {
 
-  errorMessage = '';
+
   form: FormGroup;
   candidates: ICandidate[] = [];
   model: any;
