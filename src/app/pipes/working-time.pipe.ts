@@ -12,10 +12,10 @@ export class WorkingTimePipe implements PipeTransform {
     const strings = [];
     arrayWithTime.forEach(item => {
 
-      const b = [...item.open];
+      const notFormatted = [...item.open];
       let c = '';
 
-      for (let i = 0; i < b.length; i++) {
+      for (let i = 0; i < notFormatted.length; i++) {
 
         c += item.open[i].renderedTime + '; ';
 
