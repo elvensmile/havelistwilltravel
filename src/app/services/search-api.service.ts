@@ -10,6 +10,7 @@ import {IPlaceDetails} from '../model/i-placeDetails';
 
 const BASE_URL_HERE = 'https://autocomplete.geocoder.cit.api.here.com/6.2/';
 const BASE_URL_HERE2 = 'https://geocoder.cit.api.here.com/6.2/';
+const BASE_URL_HERE3 = 'https://image.maps.cit.api.here.com/mia/1.6/';
 const API_KEY_HERE = 'JbIOPoL5RQKXY4qcnTwn';
 const APP_CODE_HERE = 's2hsEBmd2aTzMRonEVqJqg';
 
@@ -67,6 +68,23 @@ export class SearchApiService {
         console.log('res');
         return res['response'].venue as IPlaceDetails[] || [];
       });
+  }
+
+  getPlaceMapImage(query: string) {
+    const url = `${BASE_URL_HERE3}mapview?app_id=${API_KEY_HERE}&app_code=${APP_CODE_HERE}&n=10&w=390&${query}&ml=rus`;
+    console.log('url', url);
+    return this.getAsyncImage(url);
+  }
+
+  getAsyncImage(query: string) {
+    console.log(query);
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+
+      img.onload = () => resolve(query);
+      img.onerror = () => reject(new Error('Что-то пошло не так'));
+      img.src = query;
+    });
   }
 
 

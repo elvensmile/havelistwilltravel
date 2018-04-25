@@ -11,6 +11,7 @@ import {RouterModule} from '@angular/router';
 
 import {AddIntoTripModule} from '../add-into-trip/add-into-trip.module';
 import {SharingPlacesService} from '../services/sharing-places.service';
+import {HeroComponent} from "../hero/hero.component";
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import {SharingPlacesService} from '../services/sharing-places.service';
     AddIntoTripModule
 
   ],
-  declarations: [SearchFormComponent, PlacesComponent],
+  declarations: [SearchFormComponent, PlacesComponent, HeroComponent],
   exports: [SearchFormComponent],
   providers: [SearchApiService, GpskeeperService, FirebaseService, SharingPlacesService]
 })

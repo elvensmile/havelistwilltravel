@@ -1,6 +1,6 @@
 <div class="container" *ngIf="showSpinner==false">
   <div class="row">
-    <div class="col-md-6 col-lg-5 place-img"><img [src]="placeUrl" alt="">
+    <div class="col-md-6 col-lg-5 place-img"><img [src]="placeUrl" alt="" class="main-image">
     </div>
     <div class="col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1 ">
 
@@ -17,6 +17,7 @@
             <ng-template ngbTabContent>
               <br>
               <p>{{place.location.formattedAddress}}</p>
+              <img [src]="placeMap" *ngIf="placeMap.length>20">
             </ng-template>
           </ngb-tab>
           <ngb-tab title="Часы Работы">

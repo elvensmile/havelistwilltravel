@@ -16,28 +16,31 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
   place: any = [];
   sharePlace: ISubscription;
   getDetails: ISubscription;
-  placeUrl: string;
+  placeUrl;
   showSpinner = true;
-
+  placeMap;
 
   constructor(private searchapiservice: SearchApiService, private route: ActivatedRoute,
               private router: Router, private share: SharingPlacesService) {
   }
 
   ngOnInit() {
-
-    this.sharePlace = this.share.currentPlace
-      .subscribe(place1 =>
-
-        this.placeId = place1);
-
+    this.sharePlace = this.share.currentPlace.subscribe(
+      place1 => (this.placeId = place1)
+    );
 
     this.getDetails = this.route.paramMap
-      .switchMap((params: ParamMap) => this.searchapiservice.getPlaceDetails(params.get('id')))
-      .subscribe((result) => {
-        this.place = result;
+      .switchMap((params: ParamMap) =>
+        this.searchapiservice.getPlaceDetails(params.get("id"))
+      )
+      .map(res => {
+        this.place = res;
+        this.getPlaceMapImage(res).then((res) => this.placeMap = res);
+        return this.placeUrl = `${this.place.bestPhoto.prefix}612x612${this.place.bestPhoto.suffix}`
+      })
+      .subscribe(() => {
         this.showSpinner = false;
-        return this.placeUrl = `${this.place.bestPhoto.prefix}612x612${this.place.bestPhoto.suffix}`;
+
       });
 
   }
@@ -47,6 +50,13 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
     this.getDetails.unsubscribe();
   }
 
+  getPlaceMapImage(place) {
+    const query = `co=${place.location.country}&z=14&i=1&s=${
+      place.location.formattedAddress["0"]
+      }&ci=${place.location.city}`;
 
+    return this.placeMap = this.searchapiservice
+      .getPlaceMapImage(query);
+  }
 
 }

@@ -1,7 +1,7 @@
-<div id="places">
+<div id="places" *ngIf="showplaces===true">
   <div class="container">
     <h3 class ="errorMessage" *ngIf="errorMessage!= ''">{{errorMessage}}</h3>
-    <div class="page-title text-center" *ngIf="showplaces===true">
+    <div class="page-title text-center">
       <h1 >Мы нашли следующие места: </h1>
 
       <hr class="pg-titl-bdr-btm">

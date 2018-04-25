@@ -1,0 +1,31 @@
+.intro {
+  background-image: url('../img/intro.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  margin-bottom: 0;
+  color: white;
+  height: 70vh;
+}
+
+.jumbotron {
+  padding: 0;
+}
+
+.animated {
+  background: url("../img/baloons.png") repeat 0 0;
+  width: 100%;
+  margin: 0;
+  height: 100%;
+  padding-top: 120px;
+  box-sizing: border-box;
+  -webkit-animation: slide 20s linear infinite;
+}
+
+@-webkit-keyframes slide {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -800px;
+  }
+}

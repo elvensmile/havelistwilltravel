@@ -33,6 +33,14 @@
 
 }
 
-img{
-  height: 100%;
+.main-image {
+  max-height: 612px;
+}
+
+@media (max-width: 600px) {
+  .main-image {
+    max-width: 450px;
+
+  }
+
 }
