@@ -23,7 +23,7 @@ const CATEGORIES_FOURSQARE =
 export class SearchApiService {
   constructor(private http: HttpClient) {}
 
-  getCities(query) {
+  getCities(query: string) {
     return this.http
       .get(
         `${BASE_URL_HERE}suggest.json?query=${query}&app_id=${API_KEY_HERE}&app_code=${APP_CODE_HERE}`
@@ -31,7 +31,7 @@ export class SearchApiService {
       .map(res => (res["suggestions"] as ICandidate[]) || []);
   }
 
-  getCityInfo(searchtext) {
+  getCityInfo(searchtext: string) {
     return this.http
       .get<ICityInfoHere>(
         `${BASE_URL_HERE2}geocode.json?app_id=${API_KEY_HERE}&app_code=${APP_CODE_HERE}&searchtext=${searchtext}`
@@ -41,7 +41,7 @@ export class SearchApiService {
       );
   }
 
-  getPlaces(query) {
+  getPlaces(query: string) {
     return this.http
       .get(
         `${BASE_URL_FOURSQUARE}/search?ll=${query}&categoryId=${CATEGORIES_FOURSQARE}&client_id=${API_KEY_FOURSQUARE}&client_secret=${APP_CODE_FOURSQUARE}&v=20180413&limit=10`
@@ -50,7 +50,7 @@ export class SearchApiService {
       .map(res => (res["response"].venues as IPlace[]) || []);
   }
 
-  getPicturesUrl(query) {
+  getPicturesUrl(query: string) {
     return this.http
       .get(
         `${BASE_URL_FOURSQUARE}/${query}/photos?group=venue&client_id=${API_KEY_FOURSQUARE}&client_secret=${APP_CODE_FOURSQUARE}&v=20180413`
@@ -64,30 +64,27 @@ export class SearchApiService {
       .onErrorResumeNext(Observable.empty<string>());
   }
 
-  getPlaceDetails(query) {
+  getPlaceDetails(query: string) {
     return this.http
       .get(
         `https://api.foursquare.com/v2/venues/${query}?client_id=${API_KEY_FOURSQUARE}&client_secret=${APP_CODE_FOURSQUARE}&v=20180413`
       )
       .map(res => {
-        console.log("res");
         return (res["response"].venue as IPlaceDetails[]) || [];
       });
   }
 
   getPlaceMapImage(query: string) {
     const url = `${BASE_URL_HERE3}mapview?app_id=${API_KEY_HERE}&app_code=${APP_CODE_HERE}&n=10&w=390&${query}&ml=rus`;
-    console.log("url", url);
+
     return this.getAsyncImage(url);
   }
 
-  getAsyncImage(query: string) {
-    console.log(query);
+  async getAsyncImage(query: string) {
     return new Promise((resolve, reject) => {
-      const img = new Image();
-
-      img.onload = () => resolve(query);
-      img.onerror = () => reject(new Error("Что-то пошло не так"));
+      let img = new Image();
+      img.onload = () => resolve(img.src);
+      img.onerror = reject;
       img.src = query;
     });
   }

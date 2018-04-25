@@ -37,14 +37,15 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
       )
       .map(res => {
         this.place = res;
-        this.getPlaceMapImage(res).then(res => (this.placeMap = res));
-        return (this.placeUrl = `${this.place.bestPhoto.prefix}612x612${
+        this.placeUrl = `${this.place.bestPhoto.prefix}612x612${
           this.place.bestPhoto.suffix
-        }`);
+        }`;
+        return this.getPlaceMapImage(res).then(url => {
+          this.showSpinner = false;
+          this.placeMap = url;
+        });
       })
-      .subscribe(() => {
-        this.showSpinner = false;
-      });
+      .subscribe();
   }
 
   ngOnDestroy() {
@@ -52,11 +53,11 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
     this.getDetails.unsubscribe();
   }
 
-  getPlaceMapImage(place) {
+  async getPlaceMapImage(place) {
     const query = `co=${place.location.country}&z=14&i=1&s=${
       place.location.formattedAddress["0"]
     }&ci=${place.location.city}`;
 
-    return (this.placeMap = this.searchapiservice.getPlaceMapImage(query));
+    return await this.searchapiservice.getPlaceMapImage(query);
   }
 }

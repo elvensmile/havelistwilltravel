@@ -19,6 +19,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
 
   place: IPlace;
   currentPlace;
+  showSpinner: boolean = true;
 
   constructor(
     private searchApiService: SearchApiService,
@@ -73,6 +74,9 @@ export class PlacesComponent implements OnInit, OnDestroy {
         },
         error => {
           this.errorMessage = "Ой, мы ничего не нашли";
+        },
+        () => {
+          this.showSpinner = false;
         }
       );
   }

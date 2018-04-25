@@ -12,6 +12,7 @@ import {RouterModule} from "@angular/router";
 import {AddIntoTripModule} from "../add-into-trip/add-into-trip.module";
 import {SharingPlacesService} from "../services/sharing-places.service";
 import {HeroComponent} from "../hero/hero.component";
+import {LoadingSpinnerModule} from "../ui/loading-spinner/loading-spinner.module";
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {HeroComponent} from "../hero/hero.component";
     ReactiveFormsModule,
     NgbModule,
     RouterModule,
-    AddIntoTripModule
+    AddIntoTripModule,
+    LoadingSpinnerModule
   ],
   declarations: [SearchFormComponent, PlacesComponent, HeroComponent],
   exports: [SearchFormComponent],
