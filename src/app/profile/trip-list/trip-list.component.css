@@ -1,23 +1,21 @@
-li{
+li {
   cursor: pointer;
 }
 
-li:hover{
+li:hover {
   background-color: #38304e;
 }
 .padded {
-
   padding: 24px 2rem;
-
 }
 
 .delete-btn {
   position: absolute;
   right: 1.25rem;
   bottom: 1rem;
-  -webkit-transition: all .2s;
-  transition: all .2s;
-  opacity: .5;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  opacity: 0.5;
   font-size: 11px;
   cursor: pointer;
   text-decoration: none;
@@ -28,13 +26,11 @@ li:hover{
 }
 
 .delete-btn:active {
-  opacity: .7;
+  opacity: 0.7;
 }
 
-.places-item{
+.places-item {
   display: block;
   color: #fff;
   font-size: 13px;
-
 }
-

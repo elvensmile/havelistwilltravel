@@ -1,5 +1,4 @@
 export interface IPlaceDetails {
-
   id: string;
   name: string;
   contact: Contact;
@@ -34,7 +33,7 @@ export interface IPlaceDetails {
   bestPhoto: BestPhoto;
 }
 
-  export interface Contact {
+export interface Contact {
   phone: string;
   formattedPhone: string;
   twitter: string;
@@ -458,7 +457,3 @@ export interface BestPhoto {
   height: number;
   visibility: string;
 }
-
-
-
-

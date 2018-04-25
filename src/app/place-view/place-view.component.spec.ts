@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import { PlaceViewComponent } from './place-view.component';
+import {PlaceViewComponent} from "./place-view.component";
 
-describe('PlaceViewComponent', () => {
+describe("PlaceViewComponent", () => {
   let component: PlaceViewComponent;
   let fixture: ComponentFixture<PlaceViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaceViewComponent ]
-    })
-    .compileComponents();
+      declarations: [PlaceViewComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('PlaceViewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

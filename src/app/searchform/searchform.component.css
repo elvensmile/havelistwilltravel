@@ -1,23 +1,22 @@
-.intro{
+.intro {
   height: 60vh;
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   margin-top: -20px;
-
 }
 
 .white-text {
-  color:white;
+  color: white;
 }
 
-#searchbox{
+#searchbox {
   margin-right: auto;
   margin-left: auto;
 }
 
-#suggestions{
+#suggestions {
   position: absolute;
   width: 98%;
 }

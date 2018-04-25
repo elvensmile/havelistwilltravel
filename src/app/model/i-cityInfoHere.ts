@@ -1,4 +1,3 @@
-
 export interface ICityInfoHere {
   MapView: MapView;
   Address: Address;

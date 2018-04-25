@@ -1,5 +1,4 @@
 export interface IPlace {
-
   id: string;
   name: string;
   location: Location;
@@ -7,8 +6,6 @@ export interface IPlace {
   venuePage: VenuePage;
   imageUrl: string;
 }
-
-
 
 export interface LabeledLatLng {
   label: string;
@@ -49,8 +46,6 @@ export interface VenuePage {
   id: string;
 }
 
-
-
 /*geometry: Geometry,
   icon: string,
   id: string,
@@ -83,7 +78,6 @@ name: string,
 perex:string,
 
 thumbnail_url: string|null,*/
-
 
 /*
 export interface Location {
@@ -124,8 +118,7 @@ export interface Photo {
 }
 */
 
-declare module namespace {
-
+declare namespace namespace {
   export interface Meta {
     code: number;
     requestId: string;
@@ -234,6 +227,4 @@ declare module namespace {
     meta: Meta;
     response: Response;
   }
-
 }
-
