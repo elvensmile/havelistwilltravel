@@ -1,0 +1,53 @@
+{
+  "configVersion": 1,
+  "index": "https://elvensmile.github.io/havelistwilltravel/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "https://elvensmile.github.io/havelistwilltravel/favicon.ico",
+        "https://elvensmile.github.io/havelistwilltravel/index.html",
+        "https://elvensmile.github.io/havelistwilltravel/inline.318b50c57b4eba3d437b.bundle.js",
+        "https://elvensmile.github.io/havelistwilltravel/main.5ace54808eeebb8ad79e.bundle.js",
+        "https://elvensmile.github.io/havelistwilltravel/polyfills.194f3db5c95bb635c66b.bundle.js",
+        "https://elvensmile.github.io/havelistwilltravel/styles.424d583b06c7dcac367f.bundle.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-128x128.png",
+        "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-144x144.png",
+        "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-152x152.png",
+        "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-192x192.png",
+        "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-384x384.png",
+        "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-512x512.png",
+        "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-72x72.png",
+        "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://elvensmile.github.io/havelistwilltravel/inline.318b50c57b4eba3d437b.bundle.js": "998c6060446975e566fd17509558ddc68d72eec3",
+    "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-128x128.png": "adbd9cb90e1314c1e0a80b30ca400943cc140791",
+    "https://elvensmile.github.io/havelistwilltravel/main.5ace54808eeebb8ad79e.bundle.js": "15036f7e2d857935db9ef7ce9e7d0ef52b77a84d",
+    "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-144x144.png": "8dc36ef7fd0eaa3e6d45bcad7d0b1c0e88fe974a",
+    "https://elvensmile.github.io/havelistwilltravel/polyfills.194f3db5c95bb635c66b.bundle.js": "1efb43b628f58146c7d7c98e11c9b496244802da",
+    "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-152x152.png": "f3d08ecbe61128e279ce2142c98d58ac4ebc0234",
+    "https://elvensmile.github.io/havelistwilltravel/styles.424d583b06c7dcac367f.bundle.css": "adf6e11c7168e40bcbf91898ee654f1dc8686a17",
+    "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-192x192.png": "2d452a1c9cebec0290243c0bc95967b14dd4249d",
+    "https://elvensmile.github.io/havelistwilltravel/favicon.ico": "b47cdc093674625f9482c39b041f110fea5888d9",
+    "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-384x384.png": "74a3153d7c9fcc26a25dfb1eb0d593ebe1bc175a",
+    "https://elvensmile.github.io/havelistwilltravel/index.html": "45ab70fd30837c480f267596ff82c560cfd43ec1",
+    "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-512x512.png": "74a3153d7c9fcc26a25dfb1eb0d593ebe1bc175a",
+    "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-72x72.png": "321701245f8d281c495d7fe2b2d42bd358add24e",
+    "https://elvensmile.github.io/havelistwilltravel/assets/icons/icon-96x96.png": "0a43544864bc426c0f3cd5f764f5c985260b1700"
+  }
+}
