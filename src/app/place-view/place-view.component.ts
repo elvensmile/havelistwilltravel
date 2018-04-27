@@ -4,6 +4,10 @@ import {SearchApiService} from "../services/search-api.service";
 import {SharingPlacesService} from "../services/sharing-places.service";
 import {IPlace} from "../model/i-place";
 import {ISubscription} from "rxjs/Subscription";
+import {catchError} from "rxjs/operators";
+import {Observable} from "rxjs/Observable";
+import {of} from "rxjs/observable/of";
+import {IPlaceDetails} from "../model/i-placeDetails";
 
 @Component({
   selector: "hlwt-place-view",
@@ -12,7 +16,7 @@ import {ISubscription} from "rxjs/Subscription";
 })
 export class PlaceViewComponent implements OnInit, OnDestroy {
   placeId: IPlace;
-  place: any = [];
+  place: IPlaceDetails;
   sharePlace: ISubscription;
   getDetails: ISubscription;
   placeUrl;
@@ -35,17 +39,34 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
       .switchMap((params: ParamMap) =>
         this.searchapiservice.getPlaceDetails(params.get("id"))
       )
-      .map(res => {
+      .do(res => {
         this.place = res;
         this.placeUrl = `${this.place.bestPhoto.prefix}612x612${
           this.place.bestPhoto.suffix
         }`;
-        return this.getPlaceMapImage(res).then(url => {
-          this.showSpinner = false;
-          this.placeMap = url;
-        });
       })
-      .subscribe();
+      .switchMap(res =>
+        this.getPlaceMapImage(res).pipe(
+          catchError(e =>
+            of(
+              "https://res.cloudinary.com/elvenapps/image/upload/v1524746683/390x300_jufqje.png"
+            )
+          )
+        )
+      )
+      /* .map(res => {
+        this.place = res;
+        this.placeUrl = `${this.place.bestPhoto.prefix}612x612${
+          this.place.bestPhoto.suffix
+        }`;
+        return this.getPlaceMapImage(res)
+          .then(url => {
+            this.placeMap = url;
+          })
+          .catch(err => this.setDefaultPic());
+      })*/
+      .do(() => (this.showSpinner = false))
+      .subscribe(res => (this.placeMap = res));
   }
 
   ngOnDestroy() {
@@ -53,11 +74,11 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
     this.getDetails.unsubscribe();
   }
 
-  async getPlaceMapImage(place) {
+  getPlaceMapImage(place): Observable<string> {
     const query = `co=${place.location.country}&z=14&i=1&s=${
       place.location.formattedAddress["0"]
     }&ci=${place.location.city}`;
 
-    return await this.searchapiservice.getPlaceMapImage(query);
+    return this.searchapiservice.getPlaceMapImage(query);
   }
 }

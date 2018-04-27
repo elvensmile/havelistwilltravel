@@ -10,6 +10,5 @@ export class GpskeeperService {
 
   changeGps(gps: string) {
     this.queryBoxGps.next(gps);
-    console.log("new gps", this.queryBoxGps);
   }
 }

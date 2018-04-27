@@ -6,6 +6,7 @@ import {ICandidate} from "../model/i-candidate";
 import {IPlace} from "../model/i-place";
 import {ICityInfoHere} from "../model/i-cityInfoHere";
 import {IPlaceDetails} from "../model/i-placeDetails";
+import {fromPromise} from "rxjs/observable/fromPromise";
 
 const BASE_URL_HERE = "https://autocomplete.geocoder.cit.api.here.com/6.2/";
 const BASE_URL_HERE2 = "https://geocoder.cit.api.here.com/6.2/";
@@ -64,27 +65,27 @@ export class SearchApiService {
       .onErrorResumeNext(Observable.empty<string>());
   }
 
-  getPlaceDetails(query: string) {
+  getPlaceDetails(query: string): Observable<IPlaceDetails> {
     return this.http
       .get(
         `https://api.foursquare.com/v2/venues/${query}?client_id=${API_KEY_FOURSQUARE}&client_secret=${APP_CODE_FOURSQUARE}&v=20180413`
       )
       .map(res => {
-        return (res["response"].venue as IPlaceDetails[]) || [];
+        return res["response"].venue as IPlaceDetails;
       });
   }
 
-  getPlaceMapImage(query: string) {
+  getPlaceMapImage(query: string): Observable<string> {
     const url = `${BASE_URL_HERE3}mapview?app_id=${API_KEY_HERE}&app_code=${APP_CODE_HERE}&n=10&w=390&${query}&ml=rus`;
 
-    return this.getAsyncImage(url);
+    return fromPromise(this.getAsyncImage(url));
   }
 
-  async getAsyncImage(query: string) {
+  async getAsyncImage(query: string): Promise<any> {
     return new Promise((resolve, reject) => {
       let img = new Image();
       img.onload = () => resolve(img.src);
-      img.onerror = reject;
+      img.onerror = () => reject(new Error("404"));
       img.src = query;
     });
   }

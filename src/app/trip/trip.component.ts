@@ -28,12 +28,12 @@ export class TripComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user.subscribe(user => {
-      this.user = user;
-      this.getTripList(user.uid);
-      this.getTripDetails(user.uid);
+      if (user != null) {
+        this.user = user;
+        this.getTripList(user.uid);
+        this.getTripDetails(user.uid);
+      }
     });
-
-    console.log("--- places", this.places);
   }
 
   getTripList(user: string) {
@@ -45,11 +45,13 @@ export class TripComponent implements OnInit {
           .snapshotChanges();
       })
 
-      .subscribe(item => {
+      .subscribe(elements => {
         this.places = [];
-        item.forEach(element => {
+        elements.forEach(element => {
           const x = element.payload.toJSON();
+
           x["key"] = element.key;
+
           this.places.push(x);
         });
       });
@@ -61,7 +63,6 @@ export class TripComponent implements OnInit {
       .snapshotChanges()
       .subscribe(item => {
         this.tripTitle = item["0"].payload.toJSON();
-        console.log(item);
       });
   }
 

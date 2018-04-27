@@ -10,9 +10,7 @@
 
 
       <form class="form-group padded" [formGroup]="form" (submit)="onSubmitLogin()">
-        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-          {{errorMessage}}
-        </div>
+
         <input type="text" class="fadeIn second form-control" name="email" placeholder="email" id="inputEmailForm"
                required=""
                formControlName="inputEmailForm"
@@ -27,6 +25,11 @@
         <div class="invalid-feedback">
           {{form.get('inputPasswordForm').errors && getErrors(form.get('inputPasswordForm').errors)}}
         </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+
         <input type="submit" class="btn btn-block btn-lg btn-primary fadeIn fourth" value="Войти"
                [disabled]="form.invalid||form.pristine">
         <p>Или в один клик можно:</p>

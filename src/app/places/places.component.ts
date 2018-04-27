@@ -33,9 +33,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
     this.currentPlace = this.share.currentPlace
       .distinctUntilChanged()
       .filter(place => place != "")
-      .subscribe(place => {
-        return (this.place = place);
-      });
+      .subscribe(place => (this.place = place));
 
     this.gpskeeper.currentGps
       .distinctUntilChanged()
@@ -47,7 +45,46 @@ export class PlacesComponent implements OnInit, OnDestroy {
     this.currentPlace.unsubscribe();
   }
 
-  getPlaces(placeGps) {
+  getPlaces(placeGps: string) {
+    this.places = [];
+    this.showplaces = false;
+
+    this.searchApiService
+      .getPlaces(placeGps)
+      .do(() => {
+        this.showplaces = true;
+      })
+      .switchMap(places => this.setPicturesUrls(places))
+      .finally(() => {
+        this.showSpinner = false;
+      })
+      .subscribe(
+        places => {
+          this.places.push(...places);
+        },
+        error => {
+          this.errorMessage = "Ой, мы ничего не нашли";
+        }
+      );
+  }
+
+  setPicturesUrls(places): Observable<any> {
+    return Observable.combineLatest(
+      places.map(place =>
+        this.searchApiService
+          .getPicturesUrl(place.id)
+          .catch(() => Observable.of(null))
+          .filter(value => !!value)
+          .map(pictureUrl => {
+            place["imageUrl"] = pictureUrl;
+
+            return place;
+          })
+      )
+    );
+  }
+
+  /*getPlaces(placeGps) {
     Observable.of(placeGps)
       .do(() => {
         this.places = [];
@@ -79,7 +116,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
           this.showSpinner = false;
         }
       );
-  }
+  }*/
 
   onAdd(place: IPlace, content) {
     event.preventDefault();

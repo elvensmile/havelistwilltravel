@@ -10,7 +10,6 @@ const BASE_URL = "https://have-list-will-t-1523390586858.firebaseio.com/";
 @Injectable()
 export class FirebaseService {
   usersTripsList: AngularFireList<any>;
-  //  tripsList: AngularFireList<any>;
 
   private tripListLength = new BehaviorSubject(0);
   currentTripListLength = this.tripListLength.asObservable();

@@ -19,10 +19,7 @@ export class AuthService {
     return this.firebaseAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
-        this.router.navigate(["/"]);
-      })
-      .catch(err => {
-        console.log("Error:", err.message);
+        this.router.navigate(["/profile"]);
       });
   }
 
@@ -31,9 +28,6 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         this.router.navigate(["/"]);
-      })
-      .catch(err => {
-        console.log("Error", err.message);
       });
   }
 

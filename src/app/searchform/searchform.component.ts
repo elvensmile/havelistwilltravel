@@ -71,7 +71,7 @@ export class SearchFormComponent implements OnInit {
     const queryBoxGps = `${queryBox.DisplayPosition.Latitude},${
       queryBox.DisplayPosition.Longitude
     }`;
-    console.log("-GPS", queryBoxGps);
+
     return queryBoxGps;
   }
 

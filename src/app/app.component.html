@@ -1,13 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
 <hlwt-navbar></hlwt-navbar>
-<div class="content">
-<router-outlet></router-outlet>
+
+<div class="content" [@routerAnimation]="getRouteAnimation(route)" >
+
+    <router-outlet #route="outlet"></router-outlet>
+
 
 
 
 </div>
-  <footer class="footer">
+
+<footer class="footer">
     <div class="row">
       <div class="col-lg-12">
 
@@ -17,7 +21,7 @@
       </div>
     </div>
 
-  </footer>
+</footer>
 
 
 

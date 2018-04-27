@@ -17,14 +17,13 @@
             <ng-template ngbTabContent>
               <br>
               <p>{{place.location.formattedAddress}}</p>
-              <img [src]="placeMap" *ngIf="placeMap.length>20">
+              <img [src]="placeMap" *ngIf="placeMap"  class="map">
             </ng-template>
           </ngb-tab>
           <ngb-tab title="Часы Работы">
             <ng-template ngbTabContent>
               <br>
-              <p style="white-space:pre-line;" *ngIf="place.popular !== undefined">{{place.popular.timeframes |
-                workingTime}}</p>
+              <p style="white-space:pre-line;" *ngIf="place.popular !== undefined">{{place.popular.timeframes | workingTime}}</p>
               <p style="white-space:pre-line;" *ngIf="place.popular == undefined">Не установлены</p>
             </ng-template>
           </ngb-tab>
@@ -36,8 +35,9 @@
 
         <h2>Лучший Отзыв</h2>
         <blockquote class="blockquote">
-          <p class="mb-0">"{{place.tips.groups["0"].items["0"].text}}"</p>
-          <footer class="blockquote-footer">{{place.tips.groups["0"].items["0"].user.firstName}}</footer>
+          <p class="mb-0" *ngIf="place.tips.groups['0'].items['0']== undefined">Нет пока отзывов... </p>
+          <p class="mb-0" *ngIf="place.tips.groups['0'].items['0'] !== undefined">"{{place.tips.groups["0"].items["0"].text}} </p>
+          <footer class="blockquote-footer" *ngIf="place.tips.groups['0'].items['0']!==undefined">{{place.tips.groups['0'].items['0'].user.firstName}}</footer>
         </blockquote>
 
         <hr class="my-4">

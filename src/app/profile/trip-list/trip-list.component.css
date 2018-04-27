@@ -1,5 +1,16 @@
-li {
+ul li {
+  position: relative;
+  display: flex;
+
+  margin: 0 0 10px 0;
+  padding: 12px;
+  box-shadow: 0 1px 1px #cec3c379;
+  border-radius: 2px;
+
+  background: #a991d4;
+  font-size: 0.9rem;
   cursor: pointer;
+  color: #ffffff;
 }
 
 li:hover {

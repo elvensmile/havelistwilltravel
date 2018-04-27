@@ -1,0 +1,11 @@
+.notfound {
+  height: 95vh;
+  width: 100%;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+}
+
+.notfound-image {
+  width: 35vw;
+  margin: auto;
+}

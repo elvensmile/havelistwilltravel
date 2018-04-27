@@ -27,13 +27,31 @@ import {LoginModule} from "./login/login.module";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {LoadingSpinnerModule} from "./ui/loading-spinner/loading-spinner.module";
 import {AuthGuard} from "./auth.guard";
+import {NotfoundComponent} from "./notfound/notfound.component";
+import {NotfoundModule} from "./notfound/notfound.module";
 
 const appRoutes: Routes = [
-  { path: "", component: SearchFormComponent },
+  { path: "", component: SearchFormComponent, data: { animation: "home" } },
   { path: "login", component: LoginComponent },
-  { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: "trip/:id", component: TripComponent, canActivate: [AuthGuard] },
-  { path: "place/:id", component: PlaceViewComponent }
+  {
+    path: "profile",
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+    data: { animation: "profile" }
+  },
+  {
+    path: "trip/:id",
+    component: TripComponent,
+    canActivate: [AuthGuard],
+    data: { animation: "trip" }
+  },
+  {
+    path: "place/:id",
+    component: PlaceViewComponent,
+    data: { animation: "place" }
+  },
+  { path: "404", component: NotfoundComponent },
+  { path: "**", redirectTo: "/404" }
 ];
 
 @NgModule({
@@ -49,6 +67,7 @@ const appRoutes: Routes = [
     TripModule,
     AddIntoTripModule,
     ProfileModule,
+    NotfoundModule,
 
     NgbModule.forRoot(),
     HttpClientModule,

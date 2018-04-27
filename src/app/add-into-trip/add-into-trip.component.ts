@@ -61,9 +61,9 @@ export class AddIntoTripComponent implements OnInit, OnDestroy {
     return this.firebaseService
       .getUserTripsList(user)
       .snapshotChanges()
-      .subscribe(item => {
+      .subscribe(elements => {
         this.trips = [];
-        item.forEach(element => {
+        elements.forEach(element => {
           const x = element.payload.toJSON();
           x["key"] = element.key;
           this.trips.push(x);
