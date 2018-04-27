@@ -6,12 +6,12 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {SearchApiService} from "../services/search-api.service";
 import {GpskeeperService} from "../services/gpskeeper.service";
 import {FirebaseService} from "../services/firebase.service";
-import {PlacesComponent} from "../places/places.component";
+import {PlacesComponent} from "./places/places.component";
 import {RouterModule} from "@angular/router";
 
 import {AddIntoTripModule} from "../add-into-trip/add-into-trip.module";
 import {SharingPlacesService} from "../services/sharing-places.service";
-import {HeroComponent} from "../hero/hero.component";
+import {HeroComponent} from "./hero/hero.component";
 import {LoadingSpinnerModule} from "../ui/loading-spinner/loading-spinner.module";
 
 @NgModule({

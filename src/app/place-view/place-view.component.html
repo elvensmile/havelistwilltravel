@@ -5,8 +5,6 @@
     <div class="col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1 ">
 
 
-
-
       <div class="place-about">
         <h2 class="place__title">{{place.name}}</h2>
         <p class="place__subtitle">{{place.categories.name}}</p>
@@ -17,13 +15,14 @@
             <ng-template ngbTabContent>
               <br>
               <p>{{place.location.formattedAddress}}</p>
-              <img [src]="placeMap" *ngIf="placeMap"  class="map">
+              <img [src]="placeMap" *ngIf="placeMap" class="map">
             </ng-template>
           </ngb-tab>
           <ngb-tab title="Часы Работы">
             <ng-template ngbTabContent>
               <br>
-              <p style="white-space:pre-line;" *ngIf="place.popular !== undefined">{{place.popular.timeframes | workingTime}}</p>
+              <p style="white-space:pre-line;" *ngIf="place.popular !== undefined">{{place.popular.timeframes |
+                workingTime}}</p>
               <p style="white-space:pre-line;" *ngIf="place.popular == undefined">Не установлены</p>
             </ng-template>
           </ngb-tab>
@@ -36,13 +35,16 @@
         <h2>Лучший Отзыв</h2>
         <blockquote class="blockquote">
           <p class="mb-0" *ngIf="place.tips.groups['0'].items['0']== undefined">Нет пока отзывов... </p>
-          <p class="mb-0" *ngIf="place.tips.groups['0'].items['0'] !== undefined">"{{place.tips.groups["0"].items["0"].text}} </p>
-          <footer class="blockquote-footer" *ngIf="place.tips.groups['0'].items['0']!==undefined">{{place.tips.groups['0'].items['0'].user.firstName}}</footer>
+          <p class="mb-0" *ngIf="place.tips.groups['0'].items['0'] !== undefined">
+            "{{place.tips.groups["0"].items["0"].text}} </p>
+          <footer class="blockquote-footer" *ngIf="place.tips.groups['0'].items['0']!==undefined">
+            {{place.tips.groups['0'].items['0'].user.firstName}}
+          </footer>
         </blockquote>
 
         <hr class="my-4">
 
-     <hlwt-add-into-trip></hlwt-add-into-trip>
+        <hlwt-add-into-trip></hlwt-add-into-trip>
 
       </div>
 

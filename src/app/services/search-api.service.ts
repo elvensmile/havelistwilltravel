@@ -45,7 +45,7 @@ export class SearchApiService {
   getPlaces(query: string) {
     return this.http
       .get(
-        `${BASE_URL_FOURSQUARE}/search?ll=${query}&categoryId=${CATEGORIES_FOURSQARE}&client_id=${API_KEY_FOURSQUARE}&client_secret=${APP_CODE_FOURSQUARE}&v=20180413&limit=10`
+        `${BASE_URL_FOURSQUARE}/search?ll=${query}&categoryId=${CATEGORIES_FOURSQARE}&client_id=${API_KEY_FOURSQUARE}&client_secret=${APP_CODE_FOURSQUARE}&v=20180413&limit=2`
       )
 
       .map(res => (res["response"].venues as IPlace[]) || []);

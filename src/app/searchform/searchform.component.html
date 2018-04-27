@@ -4,13 +4,13 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-9 mx-auto">
-        <h1 class="mb-5">Выбери город, а мы подберем интересные места!</h1>
+        <h1 class="mb-5" >Выбери город, а мы подберем интересные места!</h1>
       </div>
       <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
         <form [formGroup]="form">
           <div class="form-row">
             <div id="searchbox" class="col-12 col-md-9 mb-2 mb-md-0">
-
+            <p style="color:red">{{(isOnline | async)? '' : offlineMessage}}</p>
               <input
                 formControlName="city"
                 type="text"

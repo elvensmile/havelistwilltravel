@@ -30,6 +30,7 @@ import {AuthGuard} from "./auth.guard";
 import {NotfoundComponent} from "./notfound/notfound.component";
 import {NotfoundModule} from "./notfound/notfound.module";
 
+
 const appRoutes: Routes = [
   { path: "", component: SearchFormComponent, data: { animation: "home" } },
   { path: "login", component: LoginComponent },
@@ -76,7 +77,8 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    LoadingSpinnerModule
+    LoadingSpinnerModule,
+
   ],
 
   bootstrap: [AppComponent]

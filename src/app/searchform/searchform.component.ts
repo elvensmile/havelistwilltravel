@@ -12,6 +12,7 @@ import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/merge";
 import {ICandidate} from "../model/i-candidate";
 import {ICityInfoHere} from "../model/i-cityInfoHere";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: "app-searchform",
@@ -24,14 +25,26 @@ export class SearchFormComponent implements OnInit {
   model: any;
   lastSelectedCity = "";
   queryBox: ICityInfoHere;
+  offlineMessage:string = 'Ой, вы не в сети :(';
+  isOnline: Observable<boolean>;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private searchApiService: SearchApiService,
     private gpskeeper: GpskeeperService
-  ) {}
+  ) {
+    this.isOnline = Observable.merge(
+      Observable.of(navigator.onLine),
+      Observable.fromEvent(window, 'online').mapTo(true),
+      Observable.fromEvent(window, 'offline').mapTo(false)
+    )
+
+  }
 
   ngOnInit() {
+
+
     this.form = this.formBuilder.group({
       city: [""]
     });
@@ -39,7 +52,7 @@ export class SearchFormComponent implements OnInit {
     this.form
       .get("city")
       .valueChanges.distinctUntilChanged()
-
+      .filter(value => value != undefined)
       .filter(value => value != this.lastSelectedCity)
       .debounceTime(500)
       .switchMap(value => this.searchApiService.getCities(value))
