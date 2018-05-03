@@ -1,3 +1,65 @@
+
+
+  export interface Location {
+    lat: number;
+    lng: number;
+  }
+
+  export interface Northeast {
+    lat: number;
+    lng: number;
+  }
+
+  export interface Southwest {
+    lat: number;
+    lng: number;
+  }
+
+  export interface Viewport {
+    northeast: Northeast;
+    southwest: Southwest;
+  }
+
+  export interface Geometry {
+    location: Location;
+    viewport: Viewport;
+  }
+
+  export interface OpeningHours {
+    open_now: boolean;
+    weekday_text: any[];
+  }
+
+  export interface Photo {
+    height: number;
+    html_attributions: string[];
+    photo_reference: string;
+    width: number;
+  }
+
+  export interface IPlace {
+    formatted_address: string;
+    geometry: Geometry;
+    icon: string;
+    id: string;
+    name: string;
+    opening_hours: OpeningHours;
+    photos: Photo[];
+    place_id: string;
+    rating: number;
+    reference: string;
+    types: string[];
+    imageUrl:string;
+
+  }
+
+
+
+
+
+
+
+/*
 export interface IPlace {
   id: string;
   name: string;
@@ -46,7 +108,7 @@ export interface VenuePage {
   id: string;
 }
 
-/*geometry: Geometry,
+/!*geometry: Geometry,
   icon: string,
   id: string,
   name: string,
@@ -65,7 +127,7 @@ export interface VenuePage {
 
 
 
-/*id: string,
+/!*id: string,
 categories: any,
 rating: number,
 
@@ -77,9 +139,9 @@ location: {
 name: string,
 perex:string,
 
-thumbnail_url: string|null,*/
+thumbnail_url: string|null,*!/
 
-/*
+/!*
 export interface Location {
   lat: number,
   lng: number,
@@ -116,7 +178,7 @@ export interface Photo {
   photo_reference: string,
   width: number,
 }
-*/
+*!/
 
 declare namespace namespace {
   export interface Meta {
@@ -228,3 +290,4 @@ declare namespace namespace {
     response: Response;
   }
 }
+*/

@@ -10,7 +10,7 @@
         <form [formGroup]="form">
           <div class="form-row">
             <div id="searchbox" class="col-12 col-md-9 mb-2 mb-md-0">
-            <p style="color:red">{{(isOnline | async)? '' : offlineMessage}}</p>
+        <!--    <p style="color:red">{{(isOnline | async)? '' : offlineMessage}}</p>-->
               <input
                 formControlName="city"
                 type="text"
@@ -22,7 +22,7 @@
               <ul class="list-group" >
                 <li class="list-group-item"
                     *ngFor="let candidate of candidates"
-                    (click)="onSelectCity(candidate)" >{{candidate.label}}</li>
+                    (click)="onSelectCity(candidate)" >{{candidate.description}}</li>
 
               </ul>
               </div>

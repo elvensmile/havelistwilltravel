@@ -13,11 +13,10 @@
   <div class="col-lg-3 col-md-6 places-item" *ngFor="let place of places; let i = index">
 
     <a [routerLink]="['/place', place.id]" (click)="changePlace(place)">
-   <img src="{{place.imageUrl}}" alt=""></a>
+   <img src="{{place.imageUrl}}" alt="" ></a>
       <div class="details">
         <span class="badge badge-info info-btn" (click)="onAdd(places[i], content)">⍌</span>
-        <h4>{{place.name}}</h4>
-        <span>{{place.categories['0'].name}}</span>
+        <span>{{place.name}}</span>
       </div>
 
   </div>

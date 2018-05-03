@@ -43,7 +43,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    //this.currentPlace.unsubscribe();
+  this.currentPlace.unsubscribe();
 
   }
 
@@ -51,39 +51,51 @@ export class PlacesComponent implements OnInit, OnDestroy {
     this.places = [];
     this.showplaces = false;
 
+
     this.searchApiService
-      .getPlaces(placeGps)
+      .getPlacesGoogle(placeGps)
       .do(() => {
         this.showplaces = true;
       })
-      .switchMap(places => this.setPicturesUrls(places))
+      .switchMap(places => this.setPicturesUrlsGoogle(places))
+    /*  .onErrorResumeNext()*/
       .finally(() => {
+        console.log('finally', this.places);
         this.showSpinner = false;
       })
       .subscribe(
         places => {
           this.places.push(...places);
+          console.log('1', places);
         },
-        error => {
+        error => {console.log('err', error);
           this.errorMessage = "Ой, мы ничего не нашли";
         }
       );
   }
 
-  setPicturesUrls(places): Observable<any> {
+  setPicturesUrlsGoogle(places): Observable<any> {
     return Observable.combineLatest(
-      places.map(place =>
-        this.searchApiService
-          .getPicturesUrl(place.id)
-          .catch(() => Observable.of(null))
-          .filter(value => !!value)
-          .map(pictureUrl => {
-            place["imageUrl"] = pictureUrl;
+      places.map(place =>{
+        let queryImg ='';
+        console.log('place?', place.photos);
+        if (place.photos !=undefined) {
+          queryImg = place.photos["0"].photo_reference
+        } else queryImg = 'https://res.cloudinary.com/elvenapps/image/upload/v1523968290/450x250_wxrfpd.png';
 
+        this.searchApiService
+          .getPicturesUrlGoogle(queryImg)
+          /*.catch(() => Observable.of(null))
+          .filter(value => !!value)*/
+          .map(pictureUrl => {
+            console.log('pictureUrlzzzz', pictureUrl);
+            place.imageUrl = pictureUrl;
+            console.log('place', place);
             return place;
           })
-      )
-    );
+  } )
+    )
+
   }
 
   /*getPlaces(placeGps) {

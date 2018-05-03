@@ -9,6 +9,7 @@ export class GpskeeperService {
   constructor() {}
 
   changeGps(gps: string) {
+    console.log(gps);
     this.queryBoxGps.next(gps);
   }
 }
