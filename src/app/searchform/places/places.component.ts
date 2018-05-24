@@ -58,15 +58,18 @@ export class PlacesComponent implements OnInit, OnDestroy {
         this.showplaces = true;
       })
       .switchMap(places => this.setPicturesUrlsGoogle(places))
-    /*  .onErrorResumeNext()*/
+
+      .onErrorResumeNext()
       .finally(() => {
-        console.log('finally', this.places);
+
         this.showSpinner = false;
       })
+
       .subscribe(
-        places => {
-          this.places.push(...places);
-          console.log('1', places);
+        () => {
+
+
+
         },
         error => {console.log('err', error);
           this.errorMessage = "Ой, мы ничего не нашли";
@@ -76,61 +79,17 @@ export class PlacesComponent implements OnInit, OnDestroy {
 
   setPicturesUrlsGoogle(places): Observable<any> {
     return Observable.combineLatest(
-      places.map(place =>{
-        let queryImg ='';
-        console.log('place?', place.photos);
-        if (place.photos !=undefined) {
-          queryImg = place.photos["0"].photo_reference
-        } else queryImg = 'https://res.cloudinary.com/elvenapps/image/upload/v1523968290/450x250_wxrfpd.png';
+      places.map(place => {
 
-        this.searchApiService
-          .getPicturesUrlGoogle(queryImg)
-          /*.catch(() => Observable.of(null))
-          .filter(value => !!value)*/
-          .map(pictureUrl => {
-            console.log('pictureUrlzzzz', pictureUrl);
-            place.imageUrl = pictureUrl;
-            console.log('place', place);
-            return place;
-          })
-  } )
-    )
+     place["imageUrl"] =  this.searchApiService.getPicturesUrlGoogle(place);
+     return  this.places.push(place);
 
-  }
 
-  /*getPlaces(placeGps) {
-    Observable.of(placeGps)
-      .do(() => {
-        this.places = [];
-        this.showplaces = false;
-      })
-      .switchMap(queryBoxGps => this.searchApiService.getPlaces(queryBoxGps))
-      .do(() => {
-        this.showplaces = true;
-      })
-      .flatMap(places => {
-        return Observable.from(places);
-      })
-      .flatMap(place => {
-        return this.searchApiService
-          .getPicturesUrl(place.id)
-          .map(pictureUrl => {
-            place["imageUrl"] = pictureUrl;
-            return place;
-          });
-      })
-      .subscribe(
-        place => {
-          this.places.push(place);
-        },
-        error => {
-          this.errorMessage = "Ой, мы ничего не нашли";
-        },
-        () => {
-          this.showSpinner = false;
-        }
-      );
-  }*/
+
+        })
+    )}
+
+
 
   onAdd(place: IPlace, content) {
     event.preventDefault();
@@ -140,9 +99,10 @@ export class PlacesComponent implements OnInit, OnDestroy {
     return this.modalService.open(content).result;
   }
 
-  changePlace(place: IPlace) {
-    this.place = place;
+  changePlace(place: IPlace)
+{
+  this.place = place;
 
-    this.share.sendPlace(this.place);
-  }
+  this.share.sendPlace(this.place);
+}
 }

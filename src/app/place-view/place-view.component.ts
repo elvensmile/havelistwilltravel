@@ -7,7 +7,7 @@ import {ISubscription} from "rxjs/Subscription";
 import {catchError} from "rxjs/operators";
 import {Observable} from "rxjs/Observable";
 import {of} from "rxjs/observable/of";
-import {IPlaceDetails} from "../model/i-placeDetails";
+import {ICityInfoGoogle} from "../model/i-cityInfoGoogle";
 
 @Component({
   selector: "hlwt-place-view",
@@ -16,7 +16,7 @@ import {IPlaceDetails} from "../model/i-placeDetails";
 })
 export class PlaceViewComponent implements OnInit, OnDestroy {
   placeId: IPlace;
-  place: IPlaceDetails;
+  place: ICityInfoGoogle;
   sharePlace: ISubscription;
   getDetails: ISubscription;
   placeUrl;
@@ -37,13 +37,11 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
 
     this.getDetails = this.route.paramMap
       .switchMap((params: ParamMap) =>
-        this.searchapiservice.getPlaceDetails(params.get("id"))
+        this.searchapiservice.getPlaceDetailsGoogle(params.get("id"))
       )
       .do(res => {
         this.place = res;
-        this.placeUrl = `${this.place.bestPhoto.prefix}612x612${
-          this.place.bestPhoto.suffix
-        }`;
+        this.placeUrl = res.photos['0'].getUrl({'maxWidth': 800, 'maxHeight': 615});
       })
       .switchMap(res =>
         this.getPlaceMapImage(res).pipe(
@@ -54,17 +52,7 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
           )
         )
       )
-      /* .map(res => {
-        this.place = res;
-        this.placeUrl = `${this.place.bestPhoto.prefix}612x612${
-          this.place.bestPhoto.suffix
-        }`;
-        return this.getPlaceMapImage(res)
-          .then(url => {
-            this.placeMap = url;
-          })
-          .catch(err => this.setDefaultPic());
-      })*/
+
       .do(() => (this.showSpinner = false))
       .subscribe(res => (this.placeMap = res));
   }
@@ -75,9 +63,9 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
   }
 
   getPlaceMapImage(place): Observable<string> {
-    const query = `co=${place.location.country}&z=14&i=1&s=${
-      place.location.formattedAddress["0"]
-    }&ci=${place.location.city}`;
+    const query = `z=14&i=1&s=${
+      place.formatted_address
+    }`;
 
     return this.searchapiservice.getPlaceMapImage(query);
   }

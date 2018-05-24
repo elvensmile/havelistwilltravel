@@ -12,8 +12,11 @@
 
   <div class="col-lg-3 col-md-6 places-item" *ngFor="let place of places; let i = index">
 
-    <a [routerLink]="['/place', place.id]" (click)="changePlace(place)">
-   <img src="{{place.imageUrl}}" alt="" ></a>
+    <a [routerLink]="['/place', place.place_id]" (click)="changePlace(place)">
+<img src="{{place.imageUrl}}" alt="" >
+    <!--  <img [src]="place.imageUrl" alt="">-->
+
+    </a>
       <div class="details">
         <span class="badge badge-info info-btn" (click)="onAdd(places[i], content)">⍌</span>
         <span>{{place.name}}</span>

@@ -44,7 +44,7 @@ export class SearchFormComponent implements OnInit {
 
   ngOnInit() {
 
-
+    const googleMap = new google.maps.Map(document.getElementById('map'),{center: { lat: -33.867, lng: 151.206 },zoom: 15});
     this.form = this.formBuilder.group({
       city: [""]
     });
@@ -53,14 +53,16 @@ export class SearchFormComponent implements OnInit {
       .get("city")
       .valueChanges.distinctUntilChanged()
       .filter(value => value != this.lastSelectedCity)
-      .debounceTime(500)
+
+      .debounceTime(300)
+
       .switchMap(value => this.searchApiService.getCitiesGoogle(value))
       .subscribe(
 
         result => {
           this.candidates=[];
           this.candidates.push(...result);
-          console.log('candidates', this.candidates)
+
         },
         error => {}
       );
@@ -71,10 +73,12 @@ export class SearchFormComponent implements OnInit {
     this.form.controls["city"].setValue(city.description);
     this.candidates=[];
     let cityArgument = city.place_id;
+   // this.gpskeeper.changeGps(cityArgument);
 
     this.searchApiService.getCityInfoGoogle(cityArgument).subscribe(res => {
-      this.queryBox = res;
-      this.gpskeeper.changeGps(this.getQueryBoxGps(res));
+
+
+      this.gpskeeper.changeGps(res);
     });
   }
 
@@ -86,13 +90,5 @@ export class SearchFormComponent implements OnInit {
     return queryBoxGps;
   }
 
-  /*setCandidates(candidates: ICandidate[]) {
-    const results = candidates.filter(
-      item => item.matchLevel == "city" || item.matchLevel == "state"
-    );
-    this.candidates = results;
-  }*/
-  /*setCandidates(candidates: ICandidate[]) {
-    this.candidates = results;
-  }*/
+
 }
