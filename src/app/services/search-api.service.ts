@@ -11,12 +11,12 @@ import {fromPromise} from "rxjs/observable/fromPromise";
 const BASE_URL_HERE = "https://autocomplete.geocoder.cit.api.here.com/6.2/";
 const BASE_URL_HERE2 = "https://geocoder.cit.api.here.com/6.2/";
 const BASE_URL_HERE3 = "https://image.maps.cit.api.here.com/mia/1.6/";
-const API_KEY_HERE = "JbIOPoL5RQKXY4qcnTwn";
-const APP_CODE_HERE = "s2hsEBmd2aTzMRonEVqJqg";
+const API_KEY_HERE = "YOUR_KEY"; //use your key please - используйте ваши ключи, пожалуйста
+const APP_CODE_HERE = "YOUR_KEY";
 
 const BASE_URL_FOURSQUARE = "https://api.foursquare.com/v2/venues";
-const API_KEY_FOURSQUARE = "NMXZN4BEVXXKXKMXABZKKUXG25DXMBNJ0VOMGUX24UPMTUYX";
-const APP_CODE_FOURSQUARE = "2SPUP30SILNAJO4KOQUMQSFEDK4M04CBUPQGHUIBFOW5WU4P";
+const API_KEY_FOURSQUARE = "YOUR_KEY";
+const APP_CODE_FOURSQUARE = "YOUR_KEY";
 const CATEGORIES_FOURSQARE =
   "4d4b7105d754a06377d81259,4deefb944765f83613cdba6e,5642206c498e4bfca532186c,4bf58dd8d48988d1e2931735,4bf58dd8d48988d181941735,507c8c4091d498d9fc8c67a9,4d4b7105d754a06373d81259,4bf58dd8d48988d131941735,4bf58dd8d48988d1e2941735";
 
