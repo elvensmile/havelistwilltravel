@@ -7,8 +7,8 @@ import {fromPromise} from "rxjs/observable/fromPromise";
 
 
 const BASE_URL_HERE3 = "https://image.maps.cit.api.here.com/mia/1.6/";
-const API_KEY_HERE = "JbIOPoL5RQKXY4qcnTwn";
-const APP_CODE_HERE = "s2hsEBmd2aTzMRonEVqJqg";
+const API_KEY_HERE = "YOUR_KEY"; //use your key please - используйте ваши ключи, пожалуйста
+const APP_CODE_HERE = "YOUR_KEY"; //use your key please - используйте ваши ключи, пожалуйста
 
 
 
